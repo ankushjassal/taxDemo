@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Advisor - Welcome</title>
+    <link href="https://fonts.googleapis.com/css2?family=Aptos+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Aptos Display', Arial, sans-serif;
+            background: #f8fbff;
+            color: #1a237e;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(26,35,126,0.08);
+            padding: 48px 32px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5em;
+        }
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 2em;
+        }
+        .start-btn, .upload-btn {
+            background: #1976d2;
+            color: #fff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            padding: 0.75em 2em;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 1em;
+        }
+        .start-btn:hover, .upload-btn:hover {
+            background: #1565c0;
+        }
+        .upload-form {
+            margin-top: 2em;
+            text-align: left;
+        }
+        .upload-form label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 0.5em;
+        }
+        .upload-form input[type="file"] {
+            margin-bottom: 1em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to Tax Advisor</h1>
+        <p>Your personalized platform to analyze tax liabilities and discover smart, AI-powered tax-saving strategies.</p>
+        <button class="start-btn" onclick="window.location.href='/upload'">Start</button>
+        <form class="upload-form" method="POST" action="/upload" enctype="multipart/form-data">
+            <label for="pdf_file">Upload Pay Slip or Form 16 (PDF):</label>
+            <input type="file" id="pdf_file" name="pdf_file" accept="application/pdf" required>
+            <button type="submit" class="upload-btn">Upload & Analyze</button>
+        </form>
+    </div>
+</body>
+</html> 

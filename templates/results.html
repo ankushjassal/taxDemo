@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Comparison Results</title>
+    <link href="https://fonts.googleapis.com/css2?family=Aptos+Display:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Aptos Display', Arial, sans-serif;
+            background: #f8fbff;
+            color: #1a237e;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(26,35,126,0.08);
+            padding: 40px 24px;
+            max-width: 700px;
+            width: 100%;
+            margin: 32px 0;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1em;
+            text-align: center;
+        }
+        .cards {
+            display: flex;
+            gap: 32px;
+            justify-content: center;
+            margin-top: 2em;
+        }
+        .card {
+            flex: 1;
+            background: #e3eafc;
+            border-radius: 12px;
+            padding: 32px 24px;
+            box-shadow: 0 2px 12px rgba(26,35,126,0.06);
+            text-align: center;
+            border: 3px solid transparent;
+            transition: border 0.2s;
+        }
+        .card.selected {
+            border: 3px solid #1976d2;
+            background: #e3f2fd;
+        }
+        .regime-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1em;
+        }
+        .tax-amount {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #1976d2;
+            margin-bottom: 0.5em;
+        }
+        .best-badge {
+            display: inline-block;
+            background: #1976d2;
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 6px;
+            padding: 0.2em 0.8em;
+            margin-top: 0.5em;
+        }
+        .nav-btns {
+            text-align: center;
+            margin-top: 2em;
+        }
+        .next-btn, .edit-btn {
+            background: #1976d2;
+            color: #fff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 8px;
+            padding: 0.7em 2em;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin: 0 0.5em;
+        }
+        .next-btn:hover, .edit-btn:hover {
+            background: #1565c0;
+        }
+        @media (max-width: 700px) {
+            .cards {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Tax Comparison Results</h2>
+        <div class="cards">
+            <div class="card {% if selected_regime == 'old' %}selected{% endif %}">
+                <div class="regime-title">Old Regime</div>
+                <div class="tax-amount">₹{{ tax_old_regime }}</div>
+                {% if best_regime == 'old' %}
+                <div class="best-badge">Best for You</div>
+                {% endif %}
+            </div>
+            <div class="card {% if selected_regime == 'new' %}selected{% endif %}">
+                <div class="regime-title">New Regime</div>
+                <div class="tax-amount">₹{{ tax_new_regime }}</div>
+                {% if best_regime == 'new' %}
+                <div class="best-badge">Best for You</div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="nav-btns">
+            <form action="/advisor" method="get" style="display:inline;">
+                <button class="next-btn" type="submit">Get Personalized Advice</button>
+            </form>
+            <form action="/" method="get" style="display:inline;">
+                <button class="edit-btn" type="submit">Start New Session</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html> 

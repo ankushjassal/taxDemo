@@ -1,0 +1,36 @@
+import csv
+import uuid
+from datetime import datetime
+
+def save_to_csv(data, tax_result, selected_regime, user_csv='user_financials.csv', tax_csv='tax_comparison.csv'):
+    session_id = str(uuid.uuid4())
+    now = datetime.now().isoformat()
+
+    # Save user financials
+    with open(user_csv, 'a', newline='', encoding='utf-8') as f:
+        writer = csv.writer(f)
+        writer.writerow([
+            session_id,
+            data.get('gross_salary', ''),
+            data.get('basic_salary', ''),
+            data.get('hra_received', ''),
+            data.get('rent_paid', ''),
+            data.get('deduction_80c', ''),
+            data.get('deduction_80d', ''),
+            data.get('standard_deduction', ''),
+            data.get('professional_tax', ''),
+            data.get('tds', ''),
+            now
+        ])
+
+    # Save tax comparison
+    with open(tax_csv, 'a', newline='', encoding='utf-8') as f:
+        writer = csv.writer(f)
+        writer.writerow([
+            session_id,
+            tax_result['tax_old_regime'],
+            tax_result['tax_new_regime'],
+            tax_result['best_regime'],
+            selected_regime,
+            now
+        ])

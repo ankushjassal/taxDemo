@@ -1,0 +1,8 @@
+Flask
+psycopg2[binary]
+psycopg2
+python-dotenv
+PyPDF2
+pytesseract
+pdf2image
+# gemini-api-client (add actual package name if available) 
